@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 全局异常处理类
+ * 全局异常处理类 （只能处理未捕获（往外抛）的异常）
  */
-@ControllerAdvice
+@ControllerAdvice   //确保此类被扫描并加载到spring容器中
 public class GlobalExceptionHandle {
 
 
@@ -20,7 +20,7 @@ public class GlobalExceptionHandle {
      * @param e
      * @return
      */
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = Exception.class)  //声明异常处理方法
     @ResponseBody
     public ErrorInfo<String> SystemErrorHandler(HttpServletRequest request, Exception e){
         ErrorInfo<String> errorInfo = new ErrorInfo<String>();
